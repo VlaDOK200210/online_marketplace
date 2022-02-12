@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="auth-block">
+    <div class="auth-title"><p>Online marketplace</p></div>
+    <div class="auth-subtitle"><p>Login</p></div>
+
+    <form th:action="@{/login}" method="post">
+
+        <div class="auth-login">
+            <input class="input-login" type="text" name="username" placeholder="Enter username">
+        </div>
+        <div class="auth-password">
+            <input class="input-password" type="password" name="password" placeholder="Enter password">
+        </div>
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                Invalid username and password.
+            </div>
+        </div>
+        <input type="submit" class="auth-submit" value="Log In"/><br>
+        <a class="redirect-button" href="/registration">Create new account</a><br>
+    </form>
+</div>
+</body>
+</html>

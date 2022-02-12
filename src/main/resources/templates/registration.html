@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <title>Registration</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="auth-block">
+    <div class="auth-title">Registration</div>
+    <div class="auth-subtitle">Online marketplace</div>
+    <form th:action="@{/registration}" method="post" th:object="${user}">
+        <div>
+            <label>
+                <input class="input" type="text" th:field="*{name}" placeholder="Enter name">
+            </label><br>
+        </div>
+        <div>
+            <label>
+                <input class="input" type="text" th:field="*{surname}" placeholder="Enter surname">
+            </label><br>
+        </div>
+        <div>
+            <label>
+                <input class="input" type="text" th:field="*{username}" placeholder="Enter username">
+            </label><br>
+        </div>
+        <div>
+            <label>
+                <input class="input" type="password" th:field="*{password}" placeholder="Enter password">
+            </label><br>
+        </div>
+        <div>
+            <label>
+                <input class="input" type="password" th:field="*{matchingPassword}" placeholder="Repeat password">
+            </label><br>
+        </div>
+        <input type="submit" class="auth-submit" value="Submit"/><br>
+        <a class="redirect-button" href="/login">Log in</a><br>
+        <p class="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+            Invalid name</p>
+        <p class="alert" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">
+            Invalid surname</p>
+        <p class="alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+            Invalid username</p>
+        <p class="alert" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+            Invalid password</p>
+        <p class="alert" th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">
+            Invalid password</p>
+    </form>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.0/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.0/jquery.jqgrid.min.js"></script>
+    <script>
+  $(document).ready(function(){
+	$("#photos").jqGrid({
+		url:'http://localhost:9999/api/auctions',
+		datatype: "json",
+		colNames:['id', 'startPrice', 'endDate', 'productId', 'lastBetValue', 'lastBetTime','bid', 'action'],
+		colModel: [
+        { name: "id" },
+        { name: "startPrice" },
+        { name: "endDate" },
+        { name: "productId" },
+        { name: "lastBetValue" },
+        { name: "lastBetTime" },
+        {name: "bid", editable:true, formatter: function(cellvalue, options, rowobject){
+    return '<input type="text" placeholder="new bid"></input>'}},
+        {name: "action", index:status, editable:true, formatter: function(cellvalue, options, rowobject){
+    return '<button type="button">Bid</button>';
+}}
+        ],
+		rowNum:10,
+		loadonce: true,
+		rowList:[10,20,30],
+		pager: '#pager2',
+		sortname: 'id',
+		viewrecords: true,
+		sortorder: "desc",
+		caption:""
+	});
+});
+
+    </script>
+</head>
+<body>
+<table id="photos" class="display" cellspacing="0" width="100%">
+</table>
+<div id="pager2"></div>
+</body>
+</html>
